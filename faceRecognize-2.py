@@ -25,7 +25,7 @@ Names = ['The Donald', 'Nance Pelosi','Xun Jie','Zhou Jiawei']
 
 # testing an unkown picture, to recognized the trained-person
 font = cv2.FONT_HERSHEY_SIMPLEX
-testImage = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/unknown/user2.jpg')
+testImage = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/unknown/u12.jpg')
 # print('testImage: ', testImage)
 
 # face_recognition.face_locations(): located the positions for all the recognized faces
@@ -78,8 +78,9 @@ for (top, right, bottom, left), face_encoding in zip(facePositions,allEncodings)
         name = Names[first_match_index]
     cv2.rectangle(testImage,(left,top),(right,bottom),(0,0,255),2)
     cv2.putText(testImage,name,(left-6,top-6),font,0.5,(0,255,255),2)
-    # matches is an array, just need one time running
-    break
+
+    # each cycle compare one person in the database
+    # break
 
 cv2.imshow('myWindow', testImage)  
 cv2.moveWindow('myWindow',0,0)
