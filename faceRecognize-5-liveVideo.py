@@ -39,7 +39,7 @@ while True:
         if True in matches:
             first_match_index = matches.index(True)
             name = Names[first_match_index]
-        cv2.rectangle = (frame,(left, top),(right,bottom),(0,0,255),2)
+        cv2.rectangle(frame,(left, top),(right,bottom),(0,0,255),2)
         cv2.putText(frame,name,(left,top-6),font,.75,(0,255,255),2)
     cv2.imshow('Picture',frame)
     cv2.moveWindow('Picture',0,0)
