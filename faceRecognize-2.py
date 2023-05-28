@@ -5,6 +5,7 @@ print(cv2.__version__)
 # add the faces should be recognized
 donFace = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/known/Donald Trump.jpg')
 # maybe found serveral faces, so create an array, but only select the 1st one -- array[0]
+# face_recognition.face_encodings() can recognize several faces in one picture. so if only gave a singal face pic, then the array[0] will just be this person be recognized
 donEncode = face_recognition.face_encodings(donFace)[0] 
 
 nancyFace = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/known/Nancy Pelosi.jpg')
@@ -25,7 +26,7 @@ Names = ['The Donald', 'Nance Pelosi','Xun Jie','Zhou Jiawei']
 
 # testing an unkown picture, to recognized the trained-person
 font = cv2.FONT_HERSHEY_SIMPLEX
-testImage = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/unknown/u12.jpg')
+testImage = face_recognition.load_image_file('/home/xj/Desktop/pyPro/faceRecognizer/demoImages/known/XUN Jie.jpg')
 # print('testImage: ', testImage)
 
 # face_recognition.face_locations(): located the positions for all the recognized faces
