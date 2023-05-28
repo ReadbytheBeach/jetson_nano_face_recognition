@@ -25,7 +25,10 @@ with open('/home/xj/Desktop/pyPro/faceRecognizer/train.pkl','rb') as f:
 font = cv2.FONT_HERSHEY_SIMPLEX
 while True:
     _, frame =  cam.read()
-    frameRGB = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+    # make the frame smaller, than will acclerate the processing speed
+    # due to resize the frame, please make sure, at the program beginning, try to close to the camera
+    frameSmall = cv2.resize(frame,(0,0),fx = .25, fy =.25)
+    frameRGB = cv2.cvtColor(frameSmall,cv2.COLOR_BGR2RGB)
     # jetson nano could use mode='cnn'
     facePositions = face_recognition.face_locations(frameRGB, model='cnn')
     allEncodings = face_recognition.face_encodings(frameRGB, facePositions)
@@ -39,6 +42,8 @@ while True:
         if True in matches:
             first_match_index = matches.index(True)
             name = Names[first_match_index]
+        # resize to original frame size, than show the screen
+        top, right, bottom, left = top*4, right*4, bottom*4, left*4        
         cv2.rectangle(frame,(left, top),(right,bottom),(0,0,255),2)
         cv2.putText(frame,name,(left,top-6),font,.75,(0,255,255),2)
     cv2.imshow('Picture',frame)
