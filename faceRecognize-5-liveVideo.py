@@ -22,7 +22,6 @@ with open('/home/xj/Desktop/pyPro/faceRecognizer/train.pkl','rb') as f:
     # print('Encodings: ', Encodings)
     # print('Encodings type: ', Encodings[0].dtype)
         
-
 font = cv2.FONT_HERSHEY_SIMPLEX
 while True:
     _, frame =  cam.read()
