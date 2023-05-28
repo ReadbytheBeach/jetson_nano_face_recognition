@@ -38,7 +38,8 @@ while True:
     # look all the faces(facePositions provided) in the Frame(frameRGB)
     for (top, right, bottom, left),face_encoding in zip(facePositions, allEncodings):
         name = 'Unknow Person'
-        matches = face_recognition.compare_faces(Encodings, face_encoding)
+        # Asia faces not easy for separately, so should reduce the tolerance to 0.3~0.38 
+        matches = face_recognition.compare_faces(Encodings, face_encoding, tolerance=0.38)
         if True in matches:
             first_match_index = matches.index(True)
             name = Names[first_match_index]
