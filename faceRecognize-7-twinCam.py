@@ -15,6 +15,8 @@ flip=0  # change camera play direction
 cam_1 =cv2.VideoCapture(0)
 cam_2 = cv2.VideoCapture(1)
 
+print(type(cam_1))
+
 font = cv2.FONT_HERSHEY_SIMPLEX
 # dt average change
 dtav=0
@@ -22,11 +24,12 @@ dtav=0
 startTime = time.time()
 while True:
     ret, frame_1 = cam_1.read()
+
     ret, frame_2 = cam_2.read()
 
     # print the frame shape for checking
     print(frame_1.shape)
-    # put diff frames into a frame, so need resize the frame
+    # put diff frames into a frame, so need resize the frame, but not consider the diff camera frame may has diff frequency
     # frame(x,y) means opencv(column, row)
     frame_2 = cv2.resize(frame_2, (frame_1.shape[1], frame_1.shape[0]))
     frameCombined = np.hstack((frame_1,frame_2))
@@ -47,6 +50,7 @@ while True:
      
     if cv2.waitKey(1)==ord('q'):
         break
+        
 cam_1.release()
 cam_2.release()
 cv2.destroyAllWindows()
